@@ -1,86 +1,48 @@
 import './widgetSm.css';
 import { MdVisibility } from 'react-icons/md';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 export default function WidgetSm() {
+  const [newUsers, setNewUsers] = useState([]);
+
+  useEffect(() => {
+    const getNewUsers = async () => {
+      try {
+        const res = await axios.get('/users?new=true', {
+          headers: {
+            token:
+              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzE0ODMzNzBhNjEyMDdmNzMxMTZiZiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY3Mzc4MDcwNiwiZXhwIjoxNjc0MjEyNzA2fQ.XihKRaCxEMdWgCsv4rv5NrTlxInfbJ9TQDaG7Z7j0Dw',
+          },
+        });
+        setNewUsers(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getNewUsers();
+  }, []);
   return (
     <div className="widgetSm">
       <span className="widgetSmTitle">New Join Members</span>
       <ul className="widgetSmList">
-        <li className="widgetSmListItem">
-          <img
-            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-            alt=""
-            className="widgetSmImg"
-          />
-          <div className="widgetSmUser">
-            <span className="widgetSmUsername">Omar John</span>
-            <span className="widgetSmUserTitle">Software Engineer</span>
-          </div>
-          <button className="widgetSmButton">
-            <MdVisibility className='widgetSmIcon' />
-            Display
-          </button>
-        </li>
-        <li className="widgetSmListItem">
-          <img
-            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-            alt=""
-            className="widgetSmImg"
-          />
-          <div className="widgetSmUser">
-            <span className="widgetSmUsername">Omar John</span>
-            <span className="widgetSmUserTitle">Software Engineer</span>
-          </div>
-          <button className="widgetSmButton">
-            <MdVisibility className='widgetSmIcon' />
-            Display
-          </button>
-        </li>
-        <li className="widgetSmListItem">
-          <img
-            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-            alt=""
-            className="widgetSmImg"
-          />
-          <div className="widgetSmUser">
-            <span className="widgetSmUsername">Omar John</span>
-            <span className="widgetSmUserTitle">Software Engineer</span>
-          </div>
-          <button className="widgetSmButton">
-            <MdVisibility className='widgetSmIcon' />
-            Display
-          </button>
-        </li>
-        <li className="widgetSmListItem">
-          <img
-            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-            alt=""
-            className="widgetSmImg"
-          />
-          <div className="widgetSmUser">
-            <span className="widgetSmUsername">Omar John</span>
-            <span className="widgetSmUserTitle">Software Engineer</span>
-          </div>
-          <button className="widgetSmButton">
-            <MdVisibility className='widgetSmIcon' />
-            Display
-          </button>
-        </li>
-        <li className="widgetSmListItem">
-          <img
-            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-            alt=""
-            className="widgetSmImg"
-          />
-          <div className="widgetSmUser">
-            <span className="widgetSmUsername">Omar John</span>
-            <span className="widgetSmUserTitle">Software Engineer</span>
-          </div>
-          <button className="widgetSmButton">
-            <MdVisibility className='widgetSmIcon' />
-            Display
-          </button>
-        </li>
+        {newUsers.map((user, i) => (
+          <li className="widgetSmListItem" key={i}>
+            <img
+              src={user.profilePic || 'https://i.pinimg.com/736x/db/70/dc/db70dc468af8c93749d1f587d74dcb08.jpg'}
+              alt=""
+              className="widgetSmImg"
+            />
+            <div className="widgetSmUser">
+              <span className="widgetSmUsername">{user.username}</span>
+            </div>
+            <button className="widgetSmButton">
+              <MdVisibility className="widgetSmIcon" />
+              Display
+            </button>
+          </li>
+        ))}
       </ul>
     </div>
   );
