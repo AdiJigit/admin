@@ -247,5 +247,5 @@ export const productRows = [
     stock: 123,
     status: "active",
     price: "$120.00",
-  },
+  }
 ];

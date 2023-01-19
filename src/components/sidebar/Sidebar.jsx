@@ -4,7 +4,7 @@ import { MdTimeline } from 'react-icons/md';
 import { FiTrendingUp } from 'react-icons/fi';
 import { FiUsers } from 'react-icons/fi';
 import { BsFillPlayFill } from 'react-icons/bs';
-import { BiDollar } from 'react-icons/bi';
+import { BsListUl } from 'react-icons/bs';
 import { AiOutlineBarChart } from 'react-icons/ai';
 import { FiMail } from 'react-icons/fi';
 import { VscFeedback } from 'react-icons/vsc';
@@ -49,10 +49,12 @@ export default function Sidebar() {
                 Movies
               </li>
             </Link>
+            <Link to='/lists'>
             <li className="sidebarListItem">
-              <BiDollar className="sidebarIcon" />
-              Transactions
+              <BsListUl className="sidebarIcon" />
+              Lists
             </li>
+            </Link>
             <li className="sidebarListItem">
               <AiOutlineBarChart className="sidebarIcon" />
               Reports

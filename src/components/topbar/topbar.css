@@ -56,3 +56,8 @@
   object-fit: cover;
   cursor: pointer;
 }
+
+.topLogout{
+  margin-left: 10px;
+  cursor: pointer;
+}
