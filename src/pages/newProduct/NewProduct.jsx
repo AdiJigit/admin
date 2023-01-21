@@ -14,7 +14,7 @@ export default function NewProduct() {
   const [video, setVideo] = useState(null);
   const [uploaded, setUploaded] = useState(0);
 
-  const {dispatch} = useContext(MovieContext)
+  const { dispatch } = useContext(MovieContext);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -46,7 +46,6 @@ export default function NewProduct() {
       );
     });
   };
-  console.log(movie);
 
   const handleUpload = (e) => {
     e.preventDefault();
@@ -61,7 +60,7 @@ export default function NewProduct() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createMovie(movie, dispatch)
+    createMovie(movie, dispatch);
   };
 
   return (
@@ -162,6 +161,14 @@ export default function NewProduct() {
             type="file"
             name="trailer"
             onChange={(e) => setTrailer(e.target.files[0])}
+          />
+        </div>
+        <div className="addProductItem">
+          <label>Youtube Trailer</label>
+          <input
+            type="text"
+            name="youtubeTrailer"
+            onChange={handleChange}
           />
         </div>
         <div className="addProductItem">

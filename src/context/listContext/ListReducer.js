@@ -18,44 +18,6 @@ const ListReducer = (state, action) => {
         isFetching: false,
         error: true,
       };
-    // case 'CREATE_MOVIE_START':
-    //   return {
-    //     ...state,
-    //     isFetching: true,
-    //     error: false,
-    //   };
-    // case 'CREATE_MOVIE_SUCCESS':
-    //   return {
-    //     lists: [...state.lists, action.payload],
-    //     isFetching: false,
-    //     error: false,
-    //   };
-    // case 'CREATE_MOVIE_FAILURE':
-    //   return {
-    //     ...state,
-    //     isFetching: false,
-    //     error: true,
-    //   };
-    // case 'UPLOAD_MOVIE_START':
-    //   return {
-    //     ...state,
-    //     isFetching: true,
-    //     error: false,
-    //   };
-    // case 'UPLOAD_MOVIE_SUCCESS':
-    //   return {
-    //     lists: state.lists.map(
-    //       (list) => list._id === action.payload._id && action.payload
-    //     ),
-    //     isFetching: false,
-    //     error: false,
-    //   };
-    // case 'UPLOAD_MOVIE_FAILURE':
-    //   return {
-    //     ...state,
-    //     isFetching: false,
-    //     error: true,
-    //   };
     case 'DELETE_LIST_START':
       return {
         ...state,
@@ -64,7 +26,7 @@ const ListReducer = (state, action) => {
       };
     case 'DELETE_LIST_SUCCESS':
       return {
-        lists: state.lists.filter((list) => list._id !== action.payload.id),
+        lists: state.lists.filter((list) => list._id !== action.payload),
         isFetching: false,
         error: false,
       };
@@ -74,6 +36,45 @@ const ListReducer = (state, action) => {
         isFetching: false,
         error: true,
       };
+    case 'CREATE_LIST_START':
+      return {
+        ...state,
+        isFetching: true,
+        error: false,
+      };
+    case 'CREATE_LIST_SUCCESS':
+      return {
+        lists: [...state.lists, action.payload],
+        isFetching: false,
+        error: false,
+      };
+    case 'CREATE_LIST_FAILURE':
+      return {
+        ...state,
+        isFetching: false,
+        error: true,
+      };
+    case 'UPDATE_LIST_START':
+      return {
+        ...state,
+        isFetching: true,
+        error: false,
+      };
+    case 'UPDATE_LIST_SUCCESS':
+      return {
+        lists: state.lists.map(
+          (list) => list._id === action.payload._id && action.payload
+        ),
+        isFetching: false,
+        error: false,
+      };
+    case 'UPDATE_LIST_FAILURE':
+      return {
+        ...state,
+        isFetching: false,
+        error: true,
+      };
+
     default:
       return { ...state };
   }
